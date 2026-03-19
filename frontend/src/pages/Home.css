@@ -1,214 +1,165 @@
-/* Base */
-
-main{
-font-family:Arial, sans-serif;
-line-height:1.6;
-color:#333;
+/* ===== HOME PAGE ===== */
+.home-page {
+  padding-top: 70px;
 }
 
-/* Container */
-
-.container{
-max-width:1200px;
-margin:auto;
-padding:0 20px;
+.home-hero {
+  background: linear-gradient(135deg, rgba(27, 67, 50, 0.85), rgba(45, 106, 79, 0.75)),
+    url("https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1932&q=80");
+  background-size: cover;
+  background-position: center;
+  padding: 120px 0 100px;
 }
 
-/* HERO SECTION */
-
-.home-hero{
-background:
-linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
-url("https://static.vecteezy.com/system/resources/thumbnails/031/696/054/small_2x/sprawling-agricultural-farm-featuring-fields-of-crops-ai-generated-photo.jpg");
-
-background-size:cover;
-
-/* IMAGE MOVED DOWN */
-background-position:center 100%;
-
-padding:200px 0;
-
-text-align:center;
-color:white;
+/* ----- Quick Actions ----- */
+.quick-actions-section {
+  background: var(--bg-cream);
+  padding: 70px 0;
 }
 
-.hero-title{
-font-size:3.5rem;
-margin-bottom:20px;
+.quick-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
-.hero-subtitle{
-font-size:1.5rem;
-max-width:700px;
-margin:auto;
+.quick-action-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 24px;
+  background: var(--bg-card);
+  border: 2px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: var(--text-dark);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Section */
-
-.section{
-padding:60px 0;
+.quick-action-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--card-accent, var(--primary));
+  border-radius: 0 4px 4px 0;
+  transition: width 0.3s ease;
 }
 
-/* Titles */
-
-.section-title{
-text-align:center;
-font-size:2.5rem;
+.quick-action-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--card-accent, var(--primary-light));
 }
 
-.section-subtitle{
-text-align:center;
-color:#555;
-margin-bottom:40px;
+.quick-action-card:hover::before {
+  width: 6px;
 }
 
-/* FEATURES */
-
-.features{
-background:#f8f9fa;
+.qa-icon {
+  font-size: 2.2rem;
+  flex-shrink: 0;
+  line-height: 1;
 }
 
-.feature-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:30px;
-margin-top:40px;
+.qa-text h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 2px;
 }
 
-/* Feature Cards */
-
-.feature-card{
-height:250px;
-background:white;
-border-radius:12px;
-box-shadow:0 10px 25px rgba(0,0,0,0.1);
-
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-
-padding:20px;
-text-align:center;
-
-transition:.3s;
+.qa-text p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.4;
 }
 
-.feature-card:hover{
-transform:translateY(-8px);
-box-shadow:0 15px 35px rgba(0,0,0,0.15);
+.qa-arrow {
+  margin-left: auto;
+  font-size: 1.3rem;
+  color: var(--text-light);
+  transition: transform 0.2s, color 0.2s;
+  flex-shrink: 0;
 }
 
-.feature-icon{
-font-size:40px;
-color:#4CAF50;
-margin-bottom:10px;
+.quick-action-card:hover .qa-arrow {
+  transform: translateX(4px);
+  color: var(--card-accent, var(--primary));
 }
 
-/* Featured solutions */
-
-.solutions-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:30px;
+/* ----- Features ----- */
+.features-section {
+  background: var(--bg-earth);
+  padding: 80px 0;
 }
 
-.solution-card{
-background:white;
-padding:20px;
-border-radius:10px;
-text-align:center;
-box-shadow:0 10px 25px rgba(0,0,0,0.1);
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
 }
 
-.solution-card img{
-width:100%;
-height:200px;
-object-fit:cover;
-border-radius:8px;
+.feature-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  text-align: center;
+  border: 1px solid var(--border-light);
+  transition: all 0.3s ease;
 }
 
-.solution-card h3{
-margin-top:15px;
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-light);
 }
 
-.solution-card p{
-margin-top:8px;
+.feature-emoji {
+  font-size: 2.8rem;
+  margin-bottom: 16px;
+  line-height: 1;
 }
 
-/* BUTTON STYLE */
-
-.btn{
-display:inline-block;
-padding:10px 20px;
-border-radius:6px;
-text-decoration:none;
+.feature-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text-dark);
 }
 
-.btn-primary{
-background:#4CAF50;
-color:white;
-margin-top:12px;
+.feature-card p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
 }
 
-/* Stats */
-
-.farm-stats{
-background:linear-gradient(135deg,#4CAF50,#2E7D32);
-color:white;
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .quick-actions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.farm-stats-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:30px;
-text-align:center;
-}
-
-.farm-stats-card{
-background:rgba(255,255,255,0.15);
-padding:20px;
-border-radius:10px;
-}
-
-/* CTA */
-
-.cta-section{
-background:
-linear-gradient(rgba(255,255,255,0.7),rgba(0,0,0,0.7)),
-url("https://images.unsplash.com/photo-1501785886875-5e3d4d838e9e");
-
-background-size:cover;
-background-position:center;
-
-text-align:center;
-color:white;
-
-padding:120px 0;
-}
-
-.cta-btn{
-background:#FFC107;
-padding:15px 40px;
-border-radius:50px;
-color:#333;
-text-decoration:none;
-}
-
-/* Responsive */
-
-@media(max-width:900px){
-
-.feature-grid{
-grid-template-columns:repeat(2,1fr);
-}
-
-.solutions-grid{
-grid-template-columns:1fr;
-}
-
-.farm-stats-grid{
-grid-template-columns:repeat(2,1fr);
-}
-
+@media (max-width: 600px) {
+  .home-hero {
+    padding: 80px 0 60px;
+  }
+  .quick-actions-grid {
+    grid-template-columns: 1fr;
+  }
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+  .quick-action-card {
+    padding: 18px 20px;
+  }
 }

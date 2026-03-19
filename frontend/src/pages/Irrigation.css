@@ -1,146 +1,16 @@
-/* Global styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-  }
-  
-  /* App container with gradient background */
-  .app-container {
-    min-height: 100vh;
-    background: linear-gradient(to bottom, #e6f4e6, #c8e6c9);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 20px;
-  }
-  
-  /* Title styles */
-  .app-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #2e7d32; /* Dark green to match PNG */
-    margin-bottom: 10px;
-    text-align: center;
-  }
-  
-  /* Yellow underline below title */
-  .title-underline {
-    width: 50px;
-    height: 4px;
-    background-color: #ffb300; /* Yellow to match PNG */
-    margin-bottom: 30px;
-  }
-  
-  /* Form container */
-  .form-container {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;
-  }
-  
-  /* Form group (label + input/select) */
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  /* Form label */
-  .form-label {
-    display: block;
-    font-size: 1rem;
-    color: #4a4a4a;
-    margin-bottom: 8px;
-  }
-  
-  /* Form input and select */
-  .form-input {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-    color: #4a4a4a;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
-  
-  /* Placeholder text styling */
-  .form-input::placeholder {
-    color: #a0a0a0;
-    font-size: 0.9rem;
-  }
-  
-  /* Remove default arrow for select and add custom styling */
-  .form-input {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url('data:image/svg+xml;utf8,<svg fill="%234a4a4a" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-  }
-  
-  /* Submit button */
-  .submit-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #2e7d32; /* Dark green to match PNG */
-    color: #ffffff;
-    font-size: 1rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .submit-button:hover {
-    background-color: #1b5e20; /* Darker green on hover */
-  }
-  
-  /* Error message */
-  .error-message {
-    color: #d32f2f;
-    margin-top: 20px;
-    font-size: 1rem;
-  }
-  
-  /* Prediction container */
-  .prediction-container {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;
-    margin-top: 20px;
-  }
-  
-  /* Prediction title */
-  .prediction-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #2e7d32;
-    margin-bottom: 15px;
-  }
-  
-  /* Prediction list */
-  .prediction-list {
-    list-style: none;
-    font-size: 1rem;
-    color: #4a4a4a;
-  }
-  
-  /* Prediction list items */
-  .prediction-list li {
-    margin-bottom: 10px;
-  }
-  
-  /* Prediction label (bold part) */
-  .prediction-label {
-    font-weight: bold;
-    color: #4a4a4a;
-  }
+/* ===== IRRIGATION PAGE ===== */
+.irrigation-page { padding-top: 70px; min-height: 100vh; background: var(--bg-earth); }
+
+.irrigation-header {
+  background: linear-gradient(135deg, #0077B6, #264653);
+  padding: 50px 0 40px;
+  text-align: center;
+  color: white;
+}
+.irrigation-page-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 8px; }
+.irrigation-page-subtitle { font-size: 1.05rem; opacity: 0.85; }
+
+.irrigation-body { max-width: 800px; margin: 0 auto; padding: 30px 20px 60px; }
+.irrigation-form { margin-bottom: 24px; }
+
+.irrigation-results { animation: fadeInUp 0.5s ease; }

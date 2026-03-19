@@ -1,165 +1,66 @@
-/* General container styling */
-.min-h-screen {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(to bottom, #e6f4e6, #d4ecd4); /* Light green gradient */
-    padding: 1rem;
-  }
-  
-  /* Card container */
-  .max-w-3xl {
-    max-width: 48rem; /* Matches the width in the screenshot */
-    width: 100%;
-    background: #ffffff;
-    border-radius: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    padding: 2rem;
-  }
-  
-  /* Title styling */
-  .text-4xl {
-    font-size: 2.25rem;
-    font-weight: 700;
-    color: #2e7d32; /* Dark green for the title */
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  
-  /* Form styling */
-  .space-y-6 {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  /* Form labels */
-  .text-lg {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: #4a4a4a; /* Dark gray for labels */
-    margin-bottom: 0.5rem;
-  }
-  
-  /* Input and select styling */
-  .w-full {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #e0e0e0; /* Light gray border */
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    color: #4a4a4a;
-    background: #f9f9f9; /* Very light gray background */
-  }
-  
-  .w-full:focus {
-    outline: none;
-    border-color: #2e7d32; /* Green border on focus */
-    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1); /* Subtle green glow */
-  }
-  
-  /* Calendar icon positioning */
-  .relative {
-    position: relative;
-  }
-  
-  .absolute {
-    position: absolute;
-    right: 0.75rem;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  
-  .h-5 {
-    height: 1.25rem;
-  }
-  
-  .w-5 {
-    width: 1.25rem;
-  }
-  
-  .text-farm-green {
-    color: #2e7d32; /* Green for the calendar icon */
-  }
-  
-  /* Button styling */
-  button[type="submit"] {
-    width: 100%;
-    padding: 0.75rem;
-    background: #2e7d32; /* Dark green button */
-    color: #ffffff;
-    border-radius: 0.5rem;
-    font-size: 1.125rem;
-    font-weight: 600;
-    transition: background 0.3s ease;
-  }
-  
-  button[type="submit"]:hover:not(:disabled) {
-    background: #1b5e20; /* Darker green on hover */
-  }
-  
-  button[type="submit"]:disabled {
-    background: #a5d6a7; /* Light green when disabled */
-    cursor: not-allowed;
-  }
-  
-  /* Prediction results container */
-  .mt-8 {
-    margin-top: 2rem;
-  }
-  
-  .p-6 {
-    padding: 1.5rem;
-  }
-  
-  .bg-farm-cream {
-    background: #f5f5f5; /* Light cream background for results */
-  }
-  
-  .rounded-lg {
-    border-radius: 0.5rem;
-  }
-  
-  .border {
-    border: 1px solid #e0e0e0; /* Light gray border */
-  }
-  
-  /* Results title */
-  .text-2xl {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #2e7d32; /* Green for the results title */
-    margin-bottom: 1rem;
-  }
-  
-  /* Results list */
-  .space-y-3 {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-  
-  .text-farm-brown {
-    color: #4a4a4a; /* Dark gray for result text */
-  }
-  
-  .font-medium {
-    font-weight: 500;
-  }
-  
-  /* Ensure the select dropdown arrow is styled */
-  select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background: url('data:image/svg+xml;utf8,<svg fill="%232e7d32" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 0.75rem center/1rem 1rem;
-    background-color: #f9f9f9;
-  }
-  
-  .react-datepicker-wrapper {
-    width: 100%;
-  }
-  .react-datepicker__input-container input {
-    width: 100%;
-  }
+/* ===== PRICE PREDICTION PAGE ===== */
+.price-page { padding-top: 70px; min-height: 100vh; background: var(--bg-earth); }
+
+.price-header {
+  background: linear-gradient(135deg, #8B6F47, #6B705C);
+  padding: 50px 0 40px;
+  text-align: center;
+  color: white;
+}
+.price-page-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 8px; }
+.price-page-subtitle { font-size: 1.05rem; opacity: 0.85; }
+
+.price-body { max-width: 800px; margin: 0 auto; padding: 30px 20px 60px; }
+.price-form { margin-bottom: 24px; }
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Date Picker Override */
+.price-form .react-datepicker-wrapper { width: 100%; }
+.price-form .react-datepicker__input-container input {
+  width: 100%;
+  padding: 14px 16px;
+  min-height: 48px;
+  border: 2px solid var(--border-input);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+/* Results – shared with CropAnalysis */
+.price-results { animation: fadeInUp 0.5s ease; }
+.results-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+  text-align: center;
+}
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.result-card {
+  background: var(--bg-card);
+  border: 2px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  transition: all 0.3s;
+}
+.result-card:hover {
+  border-color: var(--primary-light);
+  box-shadow: var(--shadow-md);
+}
+.result-emoji { font-size: 2rem; display: block; margin-bottom: 10px; }
+.result-card h4 { font-size: 1rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; }
+.result-card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
+
+@media (max-width: 600px) {
+  .form-row { grid-template-columns: 1fr; }
+  .results-grid { grid-template-columns: 1fr; }
+}

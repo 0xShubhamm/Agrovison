@@ -317,7 +317,18 @@ print("Irrigation CatBoost model loaded successfully from", irrigation_catboost_
 
 # Hardcoded preprocessing objects for irrigation
 irrigation_label_encoders = {
-    'Crop_Type': {'Wheat': 0, 'Rice': 1, 'Maize': 2},
+    'Crop_Type': {
+        # Original 3 crops the model was trained on
+        'Wheat': 0, 'Rice': 1, 'Maize': 2,
+        # Crops mapped to Wheat (category 0) - similar low-medium water needs
+        'Barley': 0, 'Gram': 0, 'Mustard': 0, 'Lentil': 0, 'Peas': 0,
+        'Chickpea': 0, 'Soybean': 0, 'Groundnut': 0, 'Sesame': 0, 'Linseed': 0,
+        # Crops mapped to Rice (category 1) - high water needs
+        'Sugarcane': 1, 'Jute': 1, 'Cotton': 1, 'Tobacco': 1, 'Turmeric': 1,
+        # Crops mapped to Maize (category 2) - medium water needs
+        'Bajra': 2, 'Jowar': 2, 'Ragi': 2, 'Sunflower': 2, 'Onion': 2,
+        'Potato': 2, 'Tomato': 2, 'Brinjal': 2, 'Chilli': 2, 'Banana': 2,
+    },
     'Irrigation_Type': {'Drip': 0, 'Flood': 1, 'Sprinkler': 2},
     'Season': {'Kharif': 0, 'Rabi': 1, 'Summer': 2}
 }
@@ -341,11 +352,16 @@ irrigation_target_scalers = {target: DummyScaler() for target in irrigation_targ
 
 # Hardcoded depth and efficiency maps for irrigation
 irrigation_depth_map = {
-    'Wheat': 5, 'Rice': 10, 'Maize': 6, 'Crop4': 7, 'Crop5': 5, 'Crop6': 8, 'Crop7': 4, 'Crop8': 5, 'Crop9': 4, 'Crop10': 3,
-    'Crop11': 4, 'Crop12': 3, 'Crop13': 4, 'Crop14': 3, 'Crop15': 3, 'Crop16': 4, 'Crop17': 4, 'Crop18': 3, 'Crop19': 4, 'Crop20': 3,
-    'Crop21': 4, 'Crop22': 6, 'Crop23': 4, 'Crop24': 5, 'Crop25': 6, 'Crop26': 4, 'Crop27': 4, 'Crop28': 4, 'Crop29': 3, 'Crop30': 4,
-    'Crop31': 3, 'Crop32': 4, 'Crop33': 5, 'Crop34': 4, 'Crop35': 5, 'Crop36': 4, 'Crop37': 6, 'Crop38': 8, 'Crop39': 7, 'Crop40': 5,
-    'Crop41': 6, 'Crop42': 5, 'Crop43': 4, 'Crop44': 6, 'Crop45': 8, 'Crop46': 9, 'Crop47': 7, 'Crop48': 5, 'Crop49': 6, 'Crop50': 7
+    # Original crops
+    'Wheat': 5, 'Rice': 10, 'Maize': 6,
+    # Wheat-like crops (low-medium water)
+    'Barley': 4, 'Gram': 3, 'Mustard': 4, 'Lentil': 3, 'Peas': 4,
+    'Chickpea': 3, 'Soybean': 5, 'Groundnut': 5, 'Sesame': 3, 'Linseed': 4,
+    # Rice-like crops (high water)
+    'Sugarcane': 12, 'Jute': 8, 'Cotton': 7, 'Tobacco': 6, 'Turmeric': 8,
+    # Maize-like crops (medium water)
+    'Bajra': 4, 'Jowar': 4, 'Ragi': 4, 'Sunflower': 5, 'Onion': 5,
+    'Potato': 6, 'Tomato': 6, 'Brinjal': 5, 'Chilli': 5, 'Banana': 9,
 }
 irrigation_efficiency_map = {
     'Drip': 90, 'Flood': 80, 'Sprinkler': 50, 'Type4': 40, 'Type5': 60, 'Type6': 55, 'Type7': 60, 'Type8': 65, 'Type9': 85, 'Type10': 75,

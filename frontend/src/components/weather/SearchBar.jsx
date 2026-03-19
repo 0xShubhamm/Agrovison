@@ -1,61 +1,73 @@
 import { useState } from 'react';
-import { FiSearch } from 'react-icons/fi'; // Correct import for Feather Search icon
+import { FiSearch, FiMapPin } from 'react-icons/fi';
 
 function SearchBar({ onSearch }) {
   const [city, setCity] = useState('');
+  const [locating, setLocating] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSearch(city);
-    setCity('');
+    if (city.trim()) {
+      onSearch(city.trim());
+      setCity('');
+    }
   };
 
-  // const handleCurrentLocation = () => {
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(
-  //       (position) => {
-  //         const { latitude, longitude } = position.coords;
-  //         fetchWeatherByCoords(latitude, longitude);
-  //       },
-  //       (error) => {
-  //         console.error('Error getting location:', error);
-  //         alert('Unable to retrieve your location. Please enable location services or try searching manually.');
-  //       }
-  //     );
-  //   } else {
-  //     alert('Geolocation is not supported by your browser.');
-  //   }
-  // };
-
-  // const fetchWeatherByCoords = async (lat, lon) => {
-  //   try {
-  //     const response = await fetch(
-  //       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=4430343dc8149c573dd0523e962d7d7b&units=metric`
-  //     );
-  //     const data = await response.json();
-  //     if (data.name) {
-  //       onSearch(data.name); // Trigger weather fetch with city name
-  //     } else {
-  //       throw new Error('Location not found');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error fetching weather by location:', error);
-  //     alert('Error fetching weather for your location. Please try searching manually.');
-  //   }
-  // };
+  const handleLocation = () => {
+    if (!navigator.geolocation) {
+      alert('Location is not supported by your browser.');
+      return;
+    }
+    setLocating(true);
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        try {
+          const { latitude, longitude } = position.coords;
+          const res = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=4430343dc8149c573dd0523e962d7d7b&units=metric`
+          );
+          const data = await res.json();
+          if (data.name) {
+            onSearch(data.name);
+          }
+        } catch {
+          alert('Could not get weather for your location.');
+        }
+        setLocating(false);
+      },
+      () => {
+        alert('Please allow location access to use this feature.');
+        setLocating(false);
+      }
+    );
+  };
 
   return (
-    <div className="search-container">
-      <FiSearch className="search-icon" />
-      <form onSubmit={handleSubmit} className="search-bar">
-        <input
-          type="text"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          placeholder="Search for cities"
-          className="search-input"
-        />
+    <div className="search-wrapper">
+      <form onSubmit={handleSubmit} className="search-form">
+        <div className="search-input-group">
+          <FiSearch className="search-icon" />
+          <input
+            type="text"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            placeholder="Enter your city or village name..."
+            className="search-input"
+            id="weather-search-input"
+          />
+          <button type="submit" className="search-submit-btn" disabled={!city.trim()}>
+            Search
+          </button>
+        </div>
       </form>
+      <button
+        type="button"
+        className="location-btn"
+        onClick={handleLocation}
+        disabled={locating}
+      >
+        <FiMapPin /> {locating ? 'Finding...' : '📍 Use My Location'}
+      </button>
     </div>
   );
 }

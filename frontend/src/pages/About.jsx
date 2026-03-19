@@ -1,108 +1,69 @@
-import { FaUsers, FaHistory, FaGlobe, FaSeedling } from 'react-icons/fa'
 import Footer from '../components/Footer';
+import './About.css';
 
 const About = () => {
   return (
-    <main>
-      {/* Hero Section */}
-      <section className="hero" style={{ 
-        background: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80")'
-      }}>
-        <div className="container">
-          <h1 className="hero-title">About AgroVison</h1>
+    <main className="about-page">
+      <section className="hero about-hero">
+        <div className="container hero-content">
+          <h1 className="hero-title">📖 About AgroVision</h1>
           <p className="hero-subtitle">
-            Learn about our mission, vision, and the team behind our agricultural technology solutions
+            Built by farmers, for farmers – empowering Indian agriculture with smart technology
           </p>
         </div>
       </section>
 
-      {/* Our Story Section */}
       <section className="section">
         <div className="container">
-          <div className="about-content">
-
-            <div>
-              <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem', color: '#333' }}>
-                Our Story
-              </h2>
-
-              <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem', color: '#666', lineHeight: '1.8' }}>
-                Agrovision was founded in 2018 by a team of agricultural experts and technology innovators who 
-                saw the potential for digital transformation in farming. Our founders grew up in farming 
-                communities and witnessed firsthand the challenges that farmers face every day.
+          <div className="about-grid">
+            <div className="about-info">
+              <h2 className="about-heading">🌾 Our Mission</h2>
+              <p className="about-text">
+                AgroVision was created to help Indian farmers make smarter decisions. Whether it's 
+                knowing when to plant, how much to irrigate, or where to sell your crop at the best 
+                price — we bring all this information to your fingertips.
               </p>
-
-              <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem', color: '#666', lineHeight: '1.8' }}>
-                What began as a small startup with a focus on soil analysis has grown into a comprehensive 
-                agricultural technology company serving thousands of farmers across the country. Our mission 
-                has remained the same: to empower farmers with technology that improves yields, reduces costs, 
-                and promotes sustainable farming practices.
-              </p>
-
-              <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem', color: '#666', lineHeight: '1.8' }}>
-                Today, AgriTech is at the forefront of the agricultural technology revolution, constantly 
-                innovating and developing new solutions to address the evolving needs of modern farming.
-              </p>
-
-              {/* ✅ Added content to match height */}
-
-              <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem', color: '#666', lineHeight: '1.8' }}>
-                Our platform integrates advanced technologies such as artificial intelligence, data analytics, 
-                and real-time monitoring systems to provide farmers with accurate insights. This enables better 
-                decision-making in crop selection, irrigation planning, and resource optimization.
-              </p>
-
-              <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem', color: '#666', lineHeight: '1.8' }}>
-                We strongly believe that technology should be accessible to everyone. Agrovision is designed 
-                with simplicity in mind, ensuring that farmers from all backgrounds can easily use our platform 
-                without requiring advanced technical knowledge.
-              </p>
-
-              <p style={{ fontSize: '1.1rem', color: '#666', lineHeight: '1.8' }}>
-                Looking ahead, our vision is to expand globally and support farmers in adapting to climate 
-                change, increasing productivity, and building a more sustainable agricultural ecosystem for 
-                future generations.
+              <p className="about-text">
+                We believe that every farmer deserves access to the same data and technology that big 
+                agricultural businesses use. That's why AgroVision is free, simple, and works even 
+                when your internet connection is slow.
               </p>
             </div>
-
-            <img 
-              src="https://images.unsplash.com/photo-1523741543316-beb7fc7023d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" 
-              alt="Farmers in field" 
-              className="about-img"
-            />
-
+            <div className="about-image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?auto=format&fit=crop&w=800&q=80"
+                alt="Indian farmland"
+                className="about-img"
+                loading="lazy"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="section" style={{ 
-        background: 'linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%)',
-        color: 'white',
-        padding: '80px 0'
-      }}>
+      <section className="section values-section">
         <div className="container">
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-            gap: '30px',
-            textAlign: 'center'
-          }}>
-            <div>
-              <h3 style={{ fontSize: '3rem', fontWeight: '700', marginBottom: '10px' }}>5000+</h3>
-              <p style={{ fontSize: '1.2rem' }}>Farmers Served</p>
+          <h2 className="section-title">What We Stand For</h2>
+          <div className="values-grid">
+            <div className="value-card">
+              <span className="value-emoji">🤝</span>
+              <h3>Farmer First</h3>
+              <p>Every feature is designed with the farmer in mind — simple language, big buttons, works on basic phones.</p>
             </div>
-            <div>
-              <h3 style={{ fontSize: '3rem', fontWeight: '700', marginBottom: '10px' }}>3+</h3>
-              <p style={{ fontSize: '1.2rem' }}>Agricultural Solutions</p>
+            <div className="value-card">
+              <span className="value-emoji">📊</span>
+              <h3>Data You Can Trust</h3>
+              <p>We use government data, weather APIs, and trained AI models to give accurate predictions.</p>
             </div>
-            <div>
-              <h3 style={{ fontSize: '3rem', fontWeight: '700', marginBottom: '10px' }}>30%</h3>
-              <p style={{ fontSize: '1.2rem' }}>Average Yield Increase</p>
+            <div className="value-card">
+              <span className="value-emoji">🌍</span>
+              <h3>Sustainable Farming</h3>
+              <p>Our tools help you use less water, reduce fertilizer waste, and protect your soil.</p>
             </div>
-            <div>
-              <h3 style={{ fontSize: '3rem', fontWeight: '700', marginBottom: '10px' }}>25%</h3>
-              <p style={{ fontSize: '1.2rem' }}>Water Usage Reduction</p>
+            <div className="value-card">
+              <span className="value-emoji">📱</span>
+              <h3>Offline Friendly</h3>
+              <p>Data gets saved on your device so you can see it later — even without internet.</p>
             </div>
           </div>
         </div>
@@ -110,7 +71,7 @@ const About = () => {
 
       <Footer />
     </main>
-  )
-}
+  );
+};
 
 export default About;

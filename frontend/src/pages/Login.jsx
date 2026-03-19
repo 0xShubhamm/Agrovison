@@ -6,156 +6,93 @@ import './Login.css';
 
 const Login = () => {
   const navigate = useNavigate();
-
   const [step, setStep] = useState('options');
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    region: ''
-  });
-
+  const [formData, setFormData] = useState({ firstName: '', lastName: '', region: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // GOOGLE LOGIN
   const handleGoogleLogin = async () => {
     setLoading(true);
     setError('');
-
     const { user, error } = await loginWithGoogle();
-
-    if (error) {
-      setError(error);
-    } else {
-      setStep('form');
-    }
-
+    if (error) setError(error);
+    else setStep('form');
     setLoading(false);
   };
 
-  // GUEST LOGIN
-  const handleGuestLogin = () => {
-    setStep('form');
-  };
+  const handleGuestLogin = () => setStep('form');
 
-  // INPUT CHANGE
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // FINAL FIXED SUBMIT
   const handleFormSubmit = (e) => {
     e.preventDefault();
-
     if (!formData.firstName || !formData.lastName || !formData.region) {
       setError('Please fill all fields');
       return;
     }
-
-    const userData = {
-      ...formData,
-      type: 'guest'
-    };
-
-    // ✅ SAVE
-    localStorage.setItem('user', JSON.stringify(userData));
-
-    // ✅ TRIGGER UPDATE (IMPORTANT)
+    localStorage.setItem('user', JSON.stringify({ ...formData, type: 'guest' }));
     window.dispatchEvent(new Event("storage"));
-
-    // ✅ REDIRECT
     navigate('/');
   };
 
   return (
     <div className="auth-container">
       <div className="auth-card">
-
         <div className="text-center mb-3">
           <div className="logo-container">
             <FaSeedling className="logo-icon" />
           </div>
-          <h1 className="logo-text">Agrovision</h1>
+          <h1 className="logo-text">AgroVision</h1>
+          <p className="logo-tagline">Smart Farming for Every Farmer 🌾</p>
         </div>
 
         {step === 'options' && (
           <>
-            <h2 className="auth-title">Welcome</h2>
+            <h2 className="auth-title">Welcome!</h2>
             <p className="auth-subtitle">Choose how you want to continue</p>
 
-            {error && <div className="error-message">{error}</div>}
+            {error && <div className="error-message">⚠️ {error}</div>}
 
-            <button
-              className="auth-btn"
-              onClick={handleGoogleLogin}
-              disabled={loading}
-              style={{ marginBottom: '15px' }}
-            >
-              <FaGoogle style={{ marginRight: '10px' }} />
-              Continue with Google
+            <button className="auth-btn google-btn" onClick={handleGoogleLogin} disabled={loading}>
+              <FaGoogle /> Continue with Google
             </button>
 
-            <button
-              className="auth-btn"
-              onClick={handleGuestLogin}
-            >
-              <FaUser style={{ marginRight: '10px' }} />
-              Continue as Guest
+            <div className="auth-divider">
+              <span>or</span>
+            </div>
+
+            <button className="auth-btn guest-btn" onClick={handleGuestLogin}>
+              <FaUser /> Continue as Guest
             </button>
           </>
         )}
 
         {step === 'form' && (
           <>
-            <h2 className="auth-title">Complete Your Profile</h2>
+            <h2 className="auth-title">Tell Us About Yourself</h2>
+            <p className="auth-subtitle">This helps us show you the right data</p>
 
-            {error && <div className="error-message">{error}</div>}
+            {error && <div className="error-message">⚠️ {error}</div>}
 
             <form onSubmit={handleFormSubmit}>
               <div className="form-group">
-                <input
-                  type="text"
-                  name="firstName"
-                  className="form-control"
-                  placeholder="First Name"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                />
+                <label className="form-label">👤 First Name</label>
+                <input type="text" name="firstName" className="form-control" placeholder="e.g. Ramesh" value={formData.firstName} onChange={handleChange} />
               </div>
-
               <div className="form-group">
-                <input
-                  type="text"
-                  name="lastName"
-                  className="form-control"
-                  placeholder="Last Name"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                />
+                <label className="form-label">👤 Last Name</label>
+                <input type="text" name="lastName" className="form-control" placeholder="e.g. Patel" value={formData.lastName} onChange={handleChange} />
               </div>
-
               <div className="form-group">
-                <input
-                  type="text"
-                  name="region"
-                  className="form-control"
-                  placeholder="Region"
-                  value={formData.region}
-                  onChange={handleChange}
-                />
+                <label className="form-label">📍 Village / City</label>
+                <input type="text" name="region" className="form-control" placeholder="e.g. Anand, Gujarat" value={formData.region} onChange={handleChange} />
               </div>
-
-              <button type="submit" className="auth-btn">
-                Continue
-              </button>
+              <button type="submit" className="auth-btn">🚀 Let's Get Started</button>
             </form>
           </>
         )}
-
       </div>
     </div>
   );

@@ -7,41 +7,35 @@ import "./css/Navbar.css";
 const Navbar = ({ user }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleMenu = () => setIsOpen(!isOpen);
+
+  // Navbar scroll effect
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 30);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleLogout = async () => {
+    // Clear guest user data
+    localStorage.removeItem('user');
+    window.dispatchEvent(new Event("storage"));
+    
     const { error } = await logoutUser();
-    if (!error) {
-      navigate("/login");
-      setDropdownOpen(false);
-      window.scrollTo(0, 0);
-    } else {
-      console.error("Logout error:", error);
-    }
+    setDropdownOpen(false);
+    window.scrollTo(0, 0);
+    // Force reload to reset all state
+    window.location.href = '/login';
   };
 
-  const getRandomColor = () => {
-    const darkColors = [
-      "#4CAF50",
-      "#8B4513",
-      "#2F4F4F",
-      "#483C32",
-      "#006400",
-      "#8A2BE2",
-    ];
-    return darkColors[Math.floor(Math.random() * darkColors.length)];
-  };
-
-  const [avatarColor, setAvatarColor] = useState(getRandomColor());
-
-  useEffect(() => {
-    setAvatarColor(getRandomColor());
-  }, [user]);
+  const [avatarColor] = useState(() => {
+    const colors = ["#2D6A4F", "#E76F51", "#457B9D", "#8B6F47", "#264653"];
+    return colors[Math.floor(Math.random() * colors.length)];
+  });
 
   const getInitial = () => {
     return user && user.email ? user.email.charAt(0).toUpperCase() : "U";
@@ -59,86 +53,58 @@ const Navbar = ({ user }) => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setIsOpen(false);
   }, [location.pathname]);
 
+  const navLinks = [
+    { to: "/", label: "🏠 Home" },
+    { to: "/services", label: "🌾 Services" },
+    { to: "/services/dashboard", label: "📊 Today's Prices" },
+    { to: "/history", label: "📅 Past Data" },
+    { to: "/about", label: "📖 About" },
+    { to: "/help", label: "❓ Help" },
+  ];
+
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`}>
       <div className="container navbar-container">
-        <Link to="/" className="navbar-logo" onClick={() => window.scrollTo(0, 0)}>
+        <Link to="/" className="navbar-logo">
           <FaSeedling className="navbar-logo-icon" />
           <span>AgroVision</span>
         </Link>
 
-        <div className="navbar-toggle" onClick={toggleMenu}>
+        <div className="navbar-toggle" onClick={toggleMenu} aria-label="Toggle menu">
           {isOpen ? <FaTimes /> : <FaBars />}
         </div>
 
         <ul className={`navbar-menu ${isOpen ? "active" : ""}`}>
-          <li className="navbar-item">
-            <Link
-              to="/"
-              className={`navbar-link ${location.pathname === "/" ? "active" : ""}`}
-              onClick={() => {
-                setIsOpen(false);
-                window.scrollTo(0, 0);
-              }}
-            >
-              Home
-            </Link>
-          </li>
-          <li className="navbar-item">
-            <Link
-              to="/about"
-              className={`navbar-link ${location.pathname === "/about" ? "active" : ""}`}
-              onClick={() => {
-                setIsOpen(false);
-                window.scrollTo(0, 0);
-              }}
-            >
-              About Us
-            </Link>
-          </li>
-          <li className="navbar-item">
-            <Link
-              to="/services"
-              className={`navbar-link ${location.pathname === "/services" ? "active" : ""}`}
-              onClick={() => {
-                setIsOpen(false);
-                window.scrollTo(0, 0);
-              }}
-            >
-              Services
-            </Link>
-          </li>
-          <li className="navbar-item">
-            <Link
-              to="/help"
-              className={`navbar-link ${location.pathname === "/help" ? "active" : ""}`}
-              onClick={() => {
-                setIsOpen(false);
-                window.scrollTo(0, 0);
-              }}
-            >
-              Help
-            </Link>
-          </li>
+          {navLinks.map((link) => (
+            <li key={link.to} className="navbar-item">
+              <Link
+                to={link.to}
+                className={`navbar-link ${location.pathname === link.to ? "active" : ""}`}
+                onClick={() => setIsOpen(false)}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
           {user && (
             <li className="navbar-item avatar-container">
               <button
                 className="avatar-button"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
-                style={{ backgroundColor: avatarColor }} // Keep this dynamic style as it changes with state
+                style={{ backgroundColor: avatarColor }}
               >
                 {getInitial()}
               </button>
-
               {dropdownOpen && (
                 <div className="dropdown-menu">
-                  <button
-                    className="dropdown-logout"
-                    onClick={handleLogout}
-                  >
-                    Logout
+                  <div className="dropdown-user-info">
+                    <span className="dropdown-email">{user.email || 'Guest'}</span>
+                  </div>
+                  <button className="dropdown-logout" onClick={handleLogout}>
+                    🚪 Logout
                   </button>
                 </div>
               )}
