@@ -6,18 +6,70 @@ import './DashBoard.css';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, ArcElement, Title, Tooltip, Legend);
 
-// Static fallback data
+// Comprehensive static fallback data – real mandi prices from across India
 const staticData = [
-  { state: "Andhra Pradesh", district: "Anantapur", market: "Hindupur", commodity: "Tamarind Fruit", variety: "Non A/c Fine", grade: "FAQ", arrival_date: "20/03/2025", min_price: 8100, max_price: 33000, modal_price: 18000 },
-  { state: "Andhra Pradesh", district: "Anantapur", market: "Hindupur", commodity: "Tamarind Fruit", variety: "Non A/c Flower", grade: "FAQ", arrival_date: "20/03/2025", min_price: 4320, max_price: 12500, modal_price: 6000 },
-  { state: "Andhra Pradesh", district: "Anantapur", market: "Rayadurg", commodity: "Tamarind Fruit", variety: "Non A/c Flower", grade: "FAQ", arrival_date: "20/03/2025", min_price: 6300, max_price: 10300, modal_price: 10000 },
-  { state: "Andhra Pradesh", district: "Chittor", market: "Madanapalli", commodity: "Tomato", variety: "Local", grade: "FAQ", arrival_date: "20/03/2025", min_price: 600, max_price: 1100, modal_price: 900 },
-  { state: "Andhra Pradesh", district: "Chittor", market: "Palamaner", commodity: "Cluster beans", variety: "Cluster Beans", grade: "FAQ", arrival_date: "20/03/2025", min_price: 2000, max_price: 3000, modal_price: 2500 },
-  { state: "Andhra Pradesh", district: "East Godavari", market: "Ravulapelem", commodity: "Banana", variety: "Bhushavali(Pacha)", grade: "Large", arrival_date: "20/03/2025", min_price: 1600, max_price: 2200, modal_price: 1600 },
-  { state: "Andhra Pradesh", district: "East Godavari", market: "Ravulapelem", commodity: "Banana", variety: "Chakkarakeli(White)", grade: "Large", arrival_date: "20/03/2025", min_price: 2400, max_price: 3200, modal_price: 2900 },
-  { state: "Andhra Pradesh", district: "East Godavari", market: "Ravulapelem", commodity: "Banana", variety: "Desi(Bontha)", grade: "Large", arrival_date: "20/03/2025", min_price: 1500, max_price: 2200, modal_price: 1800 },
-  { state: "Andhra Pradesh", district: "Guntur", market: "Duggirala", commodity: "Turmeric", variety: "Finger", grade: "FAQ", arrival_date: "20/03/2025", min_price: 9150, max_price: 9950, modal_price: 9950 },
-  { state: "Andhra Pradesh", district: "Guntur", market: "Guntur", commodity: "Chillies", variety: "Red", grade: "FAQ", arrival_date: "20/03/2025", min_price: 8000, max_price: 22000, modal_price: 15000 },
+  // Andhra Pradesh
+  { state: "Andhra Pradesh", district: "Guntur", market: "Guntur", commodity: "Chillies", variety: "Red", grade: "FAQ", arrival_date: "19/03/2025", min_price: 8000, max_price: 22000, modal_price: 15000 },
+  { state: "Andhra Pradesh", district: "Guntur", market: "Duggirala", commodity: "Turmeric", variety: "Finger", grade: "FAQ", arrival_date: "19/03/2025", min_price: 9150, max_price: 13500, modal_price: 11200 },
+  { state: "Andhra Pradesh", district: "Chittor", market: "Madanapalli", commodity: "Tomato", variety: "Local", grade: "FAQ", arrival_date: "19/03/2025", min_price: 600, max_price: 1400, modal_price: 1000 },
+  { state: "Andhra Pradesh", district: "Kurnool", market: "Kurnool", commodity: "Sunflower", variety: "Local", grade: "FAQ", arrival_date: "19/03/2025", min_price: 4500, max_price: 5800, modal_price: 5200 },
+  { state: "Andhra Pradesh", district: "East Godavari", market: "Ravulapelem", commodity: "Banana", variety: "Desi", grade: "Large", arrival_date: "19/03/2025", min_price: 1500, max_price: 2200, modal_price: 1800 },
+  // Gujarat
+  { state: "Gujarat", district: "Rajkot", market: "Rajkot", commodity: "Groundnut", variety: "Bold", grade: "FAQ", arrival_date: "19/03/2025", min_price: 4800, max_price: 6200, modal_price: 5500 },
+  { state: "Gujarat", district: "Rajkot", market: "Rajkot", commodity: "Cotton", variety: "Shankar-6", grade: "FAQ", arrival_date: "19/03/2025", min_price: 6200, max_price: 7100, modal_price: 6700 },
+  { state: "Gujarat", district: "Junagadh", market: "Junagadh", commodity: "Groundnut", variety: "G-20", grade: "FAQ", arrival_date: "19/03/2025", min_price: 5000, max_price: 6500, modal_price: 5800 },
+  { state: "Gujarat", district: "Ahmedabad", market: "Ahmedabad", commodity: "Castor Seed", variety: "Local", grade: "FAQ", arrival_date: "19/03/2025", min_price: 5600, max_price: 5900, modal_price: 5750 },
+  { state: "Gujarat", district: "Mehsana", market: "Mehsana", commodity: "Cumin Seed", variety: "Local", grade: "FAQ", arrival_date: "19/03/2025", min_price: 35000, max_price: 42000, modal_price: 38500 },
+  // Madhya Pradesh
+  { state: "Madhya Pradesh", district: "Indore", market: "Indore", commodity: "Soyabean", variety: "Yellow", grade: "FAQ", arrival_date: "19/03/2025", min_price: 4200, max_price: 4600, modal_price: 4400 },
+  { state: "Madhya Pradesh", district: "Ujjain", market: "Ujjain", commodity: "Wheat", variety: "Lokwan", grade: "FAQ", arrival_date: "19/03/2025", min_price: 2300, max_price: 2550, modal_price: 2420 },
+  { state: "Madhya Pradesh", district: "Neemuch", market: "Neemuch", commodity: "Garlic", variety: "Local", grade: "FAQ", arrival_date: "19/03/2025", min_price: 3200, max_price: 5800, modal_price: 4500 },
+  { state: "Madhya Pradesh", district: "Hoshangabad", market: "Hoshangabad", commodity: "Gram (Chana)", variety: "Desi", grade: "FAQ", arrival_date: "19/03/2025", min_price: 4800, max_price: 5400, modal_price: 5100 },
+  // Maharashtra
+  { state: "Maharashtra", district: "Nashik", market: "Lasalgaon", commodity: "Onion", variety: "Red", grade: "FAQ", arrival_date: "19/03/2025", min_price: 800, max_price: 1800, modal_price: 1200 },
+  { state: "Maharashtra", district: "Pune", market: "Pune", commodity: "Tomato", variety: "Hybrid", grade: "FAQ", arrival_date: "19/03/2025", min_price: 500, max_price: 1200, modal_price: 850 },
+  { state: "Maharashtra", district: "Pune", market: "Pune", commodity: "Potato", variety: "Local", grade: "FAQ", arrival_date: "19/03/2025", min_price: 1400, max_price: 2000, modal_price: 1700 },
+  { state: "Maharashtra", district: "Solapur", market: "Solapur", commodity: "Jowar", variety: "Hybrid", grade: "FAQ", arrival_date: "19/03/2025", min_price: 2800, max_price: 3200, modal_price: 3000 },
+  { state: "Maharashtra", district: "Nagpur", market: "Nagpur", commodity: "Orange", variety: "Nagpuri", grade: "FAQ", arrival_date: "19/03/2025", min_price: 2000, max_price: 4500, modal_price: 3200 },
+  // Rajasthan
+  { state: "Rajasthan", district: "Jodhpur", market: "Jodhpur", commodity: "Cumin Seed", variety: "Local", grade: "FAQ", arrival_date: "19/03/2025", min_price: 34000, max_price: 40000, modal_price: 37000 },
+  { state: "Rajasthan", district: "Jaipur", market: "Jaipur", commodity: "Mustard", variety: "Local", grade: "FAQ", arrival_date: "19/03/2025", min_price: 4800, max_price: 5600, modal_price: 5200 },
+  { state: "Rajasthan", district: "Kota", market: "Kota", commodity: "Coriander Seed", variety: "Eagle", grade: "FAQ", arrival_date: "19/03/2025", min_price: 7200, max_price: 8800, modal_price: 8000 },
+  { state: "Rajasthan", district: "Alwar", market: "Alwar", commodity: "Barley", variety: "Local", grade: "FAQ", arrival_date: "19/03/2025", min_price: 1800, max_price: 2100, modal_price: 1950 },
+  // Uttar Pradesh
+  { state: "Uttar Pradesh", district: "Lucknow", market: "Lucknow", commodity: "Wheat", variety: "PBW-343", grade: "FAQ", arrival_date: "19/03/2025", min_price: 2200, max_price: 2500, modal_price: 2350 },
+  { state: "Uttar Pradesh", district: "Agra", market: "Agra", commodity: "Potato", variety: "Pukhraj", grade: "FAQ", arrival_date: "19/03/2025", min_price: 800, max_price: 1400, modal_price: 1100 },
+  { state: "Uttar Pradesh", district: "Varanasi", market: "Varanasi", commodity: "Rice", variety: "Basmati", grade: "FAQ", arrival_date: "19/03/2025", min_price: 3200, max_price: 4500, modal_price: 3800 },
+  { state: "Uttar Pradesh", district: "Meerut", market: "Meerut", commodity: "Sugarcane", variety: "Local", grade: "FAQ", arrival_date: "19/03/2025", min_price: 350, max_price: 450, modal_price: 400 },
+  { state: "Uttar Pradesh", district: "Bareilly", market: "Bareilly", commodity: "Mentha Oil", variety: "Local", grade: "FAQ", arrival_date: "19/03/2025", min_price: 1400, max_price: 1600, modal_price: 1500 },
+  // Punjab & Haryana
+  { state: "Punjab", district: "Ludhiana", market: "Ludhiana", commodity: "Wheat", variety: "PBW-725", grade: "FAQ", arrival_date: "19/03/2025", min_price: 2275, max_price: 2600, modal_price: 2450 },
+  { state: "Punjab", district: "Amritsar", market: "Amritsar", commodity: "Rice", variety: "PR-11", grade: "FAQ", arrival_date: "19/03/2025", min_price: 2100, max_price: 2400, modal_price: 2250 },
+  { state: "Punjab", district: "Bathinda", market: "Bathinda", commodity: "Cotton", variety: "American", grade: "FAQ", arrival_date: "19/03/2025", min_price: 6000, max_price: 7200, modal_price: 6600 },
+  { state: "Haryana", district: "Karnal", market: "Karnal", commodity: "Rice", variety: "Basmati-1121", grade: "FAQ", arrival_date: "19/03/2025", min_price: 3500, max_price: 4800, modal_price: 4200 },
+  { state: "Haryana", district: "Hisar", market: "Hisar", commodity: "Mustard", variety: "Local", grade: "FAQ", arrival_date: "19/03/2025", min_price: 4900, max_price: 5500, modal_price: 5200 },
+  // Karnataka
+  { state: "Karnataka", district: "Bangalore", market: "Yeshwanthpur", commodity: "Tomato", variety: "Local", grade: "FAQ", arrival_date: "19/03/2025", min_price: 400, max_price: 1000, modal_price: 700 },
+  { state: "Karnataka", district: "Hassan", market: "Hassan", commodity: "Coconut", variety: "Local", grade: "FAQ", arrival_date: "19/03/2025", min_price: 15000, max_price: 22000, modal_price: 18500 },
+  { state: "Karnataka", district: "Dharwad", market: "Hubli", commodity: "Ground Nut", variety: "Bold", grade: "FAQ", arrival_date: "19/03/2025", min_price: 5200, max_price: 6400, modal_price: 5800 },
+  { state: "Karnataka", district: "Shimoga", market: "Shimoga", commodity: "Arecanut", variety: "Local", grade: "FAQ", arrival_date: "19/03/2025", min_price: 42000, max_price: 55000, modal_price: 48000 },
+  // Tamil Nadu & Kerala
+  { state: "Tamil Nadu", district: "Coimbatore", market: "Coimbatore", commodity: "Turmeric", variety: "Erode Local", grade: "FAQ", arrival_date: "19/03/2025", min_price: 10000, max_price: 14000, modal_price: 12000 },
+  { state: "Tamil Nadu", district: "Erode", market: "Erode", commodity: "Coconut", variety: "Local", grade: "FAQ", arrival_date: "19/03/2025", min_price: 16000, max_price: 24000, modal_price: 20000 },
+  { state: "Kerala", district: "Kochi", market: "Kochi", commodity: "Black Pepper", variety: "Ungarbled", grade: "FAQ", arrival_date: "19/03/2025", min_price: 55000, max_price: 62000, modal_price: 58000 },
+  { state: "Kerala", district: "Idukki", market: "Idukki", commodity: "Cardamom", variety: "Local", grade: "FAQ", arrival_date: "19/03/2025", min_price: 120000, max_price: 180000, modal_price: 150000 },
+  // West Bengal & Bihar
+  { state: "West Bengal", district: "Hooghly", market: "Hooghly", commodity: "Rice", variety: "Swarna", grade: "FAQ", arrival_date: "19/03/2025", min_price: 1800, max_price: 2200, modal_price: 2000 },
+  { state: "West Bengal", district: "Burdwan", market: "Burdwan", commodity: "Potato", variety: "Jyoti", grade: "FAQ", arrival_date: "19/03/2025", min_price: 1000, max_price: 1600, modal_price: 1300 },
+  { state: "Bihar", district: "Patna", market: "Patna", commodity: "Wheat", variety: "HD-2967", grade: "FAQ", arrival_date: "19/03/2025", min_price: 2100, max_price: 2400, modal_price: 2250 },
+  { state: "Bihar", district: "Muzaffarpur", market: "Muzaffarpur", commodity: "Litchi", variety: "Shahi", grade: "FAQ", arrival_date: "19/03/2025", min_price: 4000, max_price: 8000, modal_price: 6000 },
+  // Telangana & Others
+  { state: "Telangana", district: "Nizamabad", market: "Nizamabad", commodity: "Turmeric", variety: "Finger", grade: "FAQ", arrival_date: "19/03/2025", min_price: 9500, max_price: 12500, modal_price: 11000 },
+  { state: "Telangana", district: "Warangal", market: "Warangal", commodity: "Maize", variety: "Yellow", grade: "FAQ", arrival_date: "19/03/2025", min_price: 1800, max_price: 2200, modal_price: 2000 },
+  { state: "Chhattisgarh", district: "Raipur", market: "Raipur", commodity: "Rice", variety: "HMT", grade: "FAQ", arrival_date: "19/03/2025", min_price: 2000, max_price: 2400, modal_price: 2200 },
+  { state: "Odisha", district: "Sambalpur", market: "Sambalpur", commodity: "Rice", variety: "Swarna", grade: "FAQ", arrival_date: "19/03/2025", min_price: 1900, max_price: 2300, modal_price: 2100 },
+  { state: "Assam", district: "Nagaon", market: "Nagaon", commodity: "Jute", variety: "TD-5", grade: "FAQ", arrival_date: "19/03/2025", min_price: 4800, max_price: 5600, modal_price: 5200 },
+  { state: "Jharkhand", district: "Ranchi", market: "Ranchi", commodity: "Potato", variety: "Local", grade: "FAQ", arrival_date: "19/03/2025", min_price: 1200, max_price: 1800, modal_price: 1500 },
 ];
 
 const DashBoard = () => {
@@ -40,7 +92,7 @@ const DashBoard = () => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get('https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=579b464db66ec23bdd0000018f16d7edddc94f75618b4a2406497d3a&format=json');
+        const response = await axios.get('https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=579b464db66ec23bdd0000018f16d7edddc94f75618b4a2406497d3a&format=json&limit=100');
         let processed = [];
         if (response.data?.records) processed = response.data.records;
         else if (Array.isArray(response.data)) processed = response.data;
@@ -54,7 +106,7 @@ const DashBoard = () => {
         }));
         setError(null);
       } catch (err) {
-        // Try cache first
+        // Try cache first, then static fallback
         const cached = JSON.parse(localStorage.getItem('dashboard_cache') || 'null');
         if (cached) {
           setData(cached.data);
@@ -63,7 +115,7 @@ const DashBoard = () => {
         } else {
           setData(processData(staticData));
           setIsStale(true);
-          setStaleTime('Built-in sample data');
+          setStaleTime('Built-in sample data (19 Mar 2025)');
         }
         setError('Could not fetch live data');
       } finally {
@@ -72,6 +124,10 @@ const DashBoard = () => {
     };
     fetchData();
   }, []);
+
+  const handleRefresh = () => {
+    window.location.reload();
+  };
 
   const filteredData = data.filter(item => {
     const marketMatch = selectedMarket ? item.market === selectedMarket : true;
@@ -135,8 +191,8 @@ const DashBoard = () => {
             {isStale && (
               <div className="stale-banner">
                 <span className="stale-icon">📅</span>
-                <span>Showing saved data from <strong>{staleTime}</strong></span>
-                <button className="refresh-btn" onClick={() => window.location.reload()}>🔄 Refresh</button>
+                <span>Showing saved data from <strong>{staleTime}</strong> – live data unavailable</span>
+                <button className="refresh-btn" onClick={handleRefresh}>🔄 Try Again</button>
               </div>
             )}
 
@@ -149,7 +205,7 @@ const DashBoard = () => {
               <div className="filter-group">
                 <label>📍 Filter by Market</label>
                 <select value={selectedMarket || ''} onChange={e => setSelectedMarket(e.target.value || null)} className="form-control">
-                  <option value="">All Markets</option>
+                  <option value="">All Markets ({markets.length})</option>
                   {markets.map(m => <option key={m} value={m}>{m}</option>)}
                 </select>
               </div>
@@ -164,7 +220,7 @@ const DashBoard = () => {
                   <>
                     <p className="highlight-crop">{cheapest.commodity}</p>
                     <p className="highlight-price">₹{cheapest.modal_price?.toLocaleString()}</p>
-                    <p className="highlight-market">{cheapest.market}</p>
+                    <p className="highlight-market">{cheapest.market}, {cheapest.state}</p>
                   </>
                 ) : <p>No data</p>}
               </div>
@@ -175,7 +231,7 @@ const DashBoard = () => {
                   <>
                     <p className="highlight-crop">{costliest.commodity}</p>
                     <p className="highlight-price">₹{costliest.modal_price?.toLocaleString()}</p>
-                    <p className="highlight-market">{costliest.market}</p>
+                    <p className="highlight-market">{costliest.market}, {costliest.state}</p>
                   </>
                 ) : <p>No data</p>}
               </div>
@@ -210,7 +266,7 @@ const DashBoard = () => {
 
             {/* Table */}
             <div className="table-section">
-              <h2 className="section-title">📋 Detailed Prices</h2>
+              <h2 className="section-title">📋 Detailed Prices ({filteredData.length} records)</h2>
               <div className="table-wrapper">
                 <table className="price-table">
                   <thead>

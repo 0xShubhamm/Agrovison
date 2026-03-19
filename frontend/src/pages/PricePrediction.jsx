@@ -9,6 +9,7 @@ const PricePrediction = () => {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isStale, setIsStale] = useState(false);
+  const [error, setError] = useState(null);
   const [form, setForm] = useState({ date: null, crop: '', state: '', district: '', fieldSize: '' });
 
   useEffect(() => {
@@ -25,6 +26,7 @@ const PricePrediction = () => {
     e.preventDefault();
     setLoading(true);
     setIsStale(false);
+    setError(null);
     try {
       const formattedDate = form.date
         ? `${form.date.getDate().toString().padStart(2, '0')}-${(form.date.getMonth() + 1).toString().padStart(2, '0')}-${form.date.getFullYear()}`
@@ -35,7 +37,9 @@ const PricePrediction = () => {
       });
       setResult(res.data);
       localStorage.setItem('price_prediction_cache', JSON.stringify({
-        result: res.data, timestamp: new Date().toISOString()
+        result: res.data,
+        inputs: { crop: form.crop, state: form.state, district: form.district, fieldSize: form.fieldSize },
+        timestamp: new Date().toISOString()
       }));
     } catch (err) {
       const cached = JSON.parse(localStorage.getItem('price_prediction_cache') || 'null');
@@ -43,7 +47,7 @@ const PricePrediction = () => {
         setResult(cached.result);
         setIsStale(true);
       } else {
-        alert(err.response?.data?.error || 'Prediction failed. Please try again.');
+        setError(err.response?.data?.error || 'Server unreachable. Please try again later.');
       }
     }
     setLoading(false);
@@ -125,6 +129,10 @@ const PricePrediction = () => {
             <span className="stale-icon">📅</span>
             <span>Showing last saved prediction – server may be offline</span>
           </div>
+        )}
+
+        {error && (
+          <div className="weather-error mt-3">⚠️ {error}</div>
         )}
 
         {result && (
