@@ -41,7 +41,7 @@ const Irrigation = () => {
       localStorage.setItem('irrigation_cache', JSON.stringify({
         result: response.data, timestamp: new Date().toISOString()
       }));
-    } catch (err) {
+    } catch {
       const cached = JSON.parse(localStorage.getItem('irrigation_cache') || 'null');
       if (cached) {
         setPredictions(cached.result);

@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom'
-import { FaCloudSun, FaRupeeSign, FaSeedling, FaTint, FaChartBar, FaHistory } from 'react-icons/fa'
-import Footer from '../components/Footer'
-import './Home.css'
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import Footer from '../components/Footer';
+import './Home.css';
 
 const Home = ({ user }) => {
   const firstName = user?.displayName?.split(' ')[0] || 
@@ -41,7 +41,7 @@ const Home = ({ user }) => {
         <div className="container">
           <h2 className="section-title">What would you like to do?</h2>
           <p className="section-subtitle">
-            Tap any option below to get started – it's simple and fast!
+            Tap any option below to get started – it&apos;s simple and fast!
           </p>
           
           <div className="quick-actions-grid">
@@ -76,7 +76,7 @@ const Home = ({ user }) => {
             <div className="feature-card">
               <div className="feature-emoji">📈</div>
               <h3>Fair Prices</h3>
-              <p>Know market prices before selling – don't get cheated by middlemen.</p>
+              <p>Know market prices before selling – don&apos;t get cheated by middlemen.</p>
             </div>
             <div className="feature-card">
               <div className="feature-emoji">🌦️</div>
@@ -97,4 +97,10 @@ const Home = ({ user }) => {
   )
 }
 
-export default Home
+Home.propTypes = {
+  user: PropTypes.shape({
+    displayName: PropTypes.string,
+  }),
+};
+
+export default Home;

@@ -19,13 +19,13 @@ const About = () => {
             <div className="about-info">
               <h2 className="about-heading">🌾 Our Mission</h2>
               <p className="about-text">
-                AgroVision was created to help Indian farmers make smarter decisions. Whether it's 
+                AgroVision was created to help Indian farmers make smarter decisions. Whether it&apos;s 
                 knowing when to plant, how much to irrigate, or where to sell your crop at the best 
                 price — we bring all this information to your fingertips.
               </p>
               <p className="about-text">
                 We believe that every farmer deserves access to the same data and technology that big 
-                agricultural businesses use. That's why AgroVision is free, simple, and works even 
+                agricultural businesses use. That&apos;s why AgroVision is free, simple, and works even 
                 when your internet connection is slow.
               </p>
             </div>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { FiSearch, FiMapPin } from 'react-icons/fi';
+import PropTypes from 'prop-types';
 
 function SearchBar({ onSearch }) {
   const [city, setCity] = useState('');
@@ -71,5 +72,9 @@ function SearchBar({ onSearch }) {
     </div>
   );
 }
+
+SearchBar.propTypes = {
+  onSearch: PropTypes.func,
+};
 
 export default SearchBar;

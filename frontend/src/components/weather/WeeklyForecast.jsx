@@ -1,4 +1,5 @@
 import { WiDaySunny, WiCloudy, WiRain } from 'react-icons/wi';
+import PropTypes from 'prop-types';
 // import 'D:/CPP Project/project/src/pages/WeatherForecast.css';
 
 function WeeklyForecast({ forecast }) {
@@ -38,5 +39,21 @@ function WeeklyForecast({ forecast }) {
     </div>
   );
 }
+
+WeeklyForecast.propTypes = {
+  forecast: PropTypes.arrayOf(
+    PropTypes.shape({
+      dt: PropTypes.number,
+      main: PropTypes.shape({
+        temp: PropTypes.number,
+      }),
+      weather: PropTypes.arrayOf(
+        PropTypes.shape({
+          main: PropTypes.string,
+        })
+      ),
+    })
+  ),
+};
 
 export default WeeklyForecast;

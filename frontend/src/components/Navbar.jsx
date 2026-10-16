@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FaBars, FaTimes, FaSeedling } from "react-icons/fa";
+import PropTypes from "prop-types";
 import { logoutUser } from "../firebase";
 import "./css/Navbar.css";
 
@@ -9,7 +10,7 @@ const Navbar = ({ user }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
+
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -25,7 +26,7 @@ const Navbar = ({ user }) => {
     localStorage.removeItem('user');
     window.dispatchEvent(new Event("storage"));
     
-    const { error } = await logoutUser();
+    await logoutUser();
     setDropdownOpen(false);
     window.scrollTo(0, 0);
     // Force reload to reset all state
@@ -37,8 +38,8 @@ const Navbar = ({ user }) => {
     return colors[Math.floor(Math.random() * colors.length)];
   });
 
-  const getInitial = () => {
-    return user && user.email ? user.email.charAt(0).toUpperCase() : "U";
+  const getInitial = (userData) => {
+    return userData && userData.email ? userData.email.charAt(0).toUpperCase() : "U";
   };
 
   useEffect(() => {
@@ -96,7 +97,7 @@ const Navbar = ({ user }) => {
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 style={{ backgroundColor: avatarColor }}
               >
-                {getInitial()}
+                {getInitial(user)}
               </button>
               {dropdownOpen && (
                 <div className="dropdown-menu">
@@ -114,6 +115,12 @@ const Navbar = ({ user }) => {
       </div>
     </nav>
   );
+};
+
+Navbar.propTypes = {
+  user: PropTypes.shape({
+    email: PropTypes.string,
+  }),
 };
 
 export default Navbar;

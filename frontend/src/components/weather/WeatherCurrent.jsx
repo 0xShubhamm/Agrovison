@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { WiDaySunny, WiCloudy, WiRain } from 'react-icons/wi';
+import PropTypes from 'prop-types';
 
 function WeatherCurrent({ weather }) {
   const { name, main, weather: weatherDetails } = weather;
@@ -24,5 +24,19 @@ function WeatherCurrent({ weather }) {
   </div>
   );
 }
+
+WeatherCurrent.propTypes = {
+  weather: PropTypes.shape({
+    name: PropTypes.string,
+    main: PropTypes.shape({
+      temp: PropTypes.number,
+    }),
+    weather: PropTypes.arrayOf(
+      PropTypes.shape({
+        main: PropTypes.string,
+      })
+    ),
+  }),
+};
 
 export default WeatherCurrent;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Bar, Line, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, LineElement, ArcElement, Title, Tooltip, Legend } from 'chart.js';
@@ -79,7 +79,6 @@ const DashBoard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isStale, setIsStale] = useState(false);
   const [staleTime, setStaleTime] = useState(null);
-  const [error, setError] = useState(null);
 
   const processData = (raw) => raw.map(item => ({
     ...item,
@@ -104,8 +103,7 @@ const DashBoard = () => {
         localStorage.setItem('dashboard_cache', JSON.stringify({
           data: processed, timestamp: new Date().toISOString()
         }));
-        setError(null);
-      } catch (err) {
+      } catch {
         // Try cache first, then static fallback
         const cached = JSON.parse(localStorage.getItem('dashboard_cache') || 'null');
         if (cached) {
@@ -117,7 +115,6 @@ const DashBoard = () => {
           setIsStale(true);
           setStaleTime('Built-in sample data (19 Mar 2025)');
         }
-        setError('Could not fetch live data');
       } finally {
         setIsLoading(false);
       }
@@ -179,7 +176,7 @@ const DashBoard = () => {
       <header className="dashboard-header">
         <div className="container">
           <h1 className="dashboard-page-title">📊 Market Prices Dashboard</h1>
-          <p className="dashboard-page-subtitle">Today's mandi prices from across India</p>
+          <p className="dashboard-page-subtitle">Today&apos;s mandi prices from across India</p>
         </div>
       </header>
 

@@ -1,4 +1,5 @@
 import { WiDaySunny, WiCloudy, WiRain } from 'react-icons/wi';
+import PropTypes from 'prop-types';
 
 function HourlyForecast({ forecast }) {
   // Filter for today's forecast, showing 20:00 and 23:00 (8 PM and 11 PM)
@@ -32,6 +33,22 @@ function HourlyForecast({ forecast }) {
     </div>
   );
 }
+
+HourlyForecast.propTypes = {
+  forecast: PropTypes.arrayOf(
+    PropTypes.shape({
+      dt: PropTypes.number,
+      main: PropTypes.shape({
+        temp: PropTypes.number,
+      }),
+      weather: PropTypes.arrayOf(
+        PropTypes.shape({
+          main: PropTypes.string,
+        })
+      ),
+    })
+  ),
+};
 
 export default HourlyForecast;
 

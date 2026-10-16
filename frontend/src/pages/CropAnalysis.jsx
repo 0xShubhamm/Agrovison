@@ -27,8 +27,11 @@ const CropAnalysis = () => {
         .then(data => {
           if (data.crops) {
             setAvailableCrops(data.crops);
-            if (!data.crops.includes(inputs.crop)) setInputs(prev => ({ ...prev, crop: '' }));
-            if (!data.crops.includes(inputs.previousCrop)) setInputs(prev => ({ ...prev, previousCrop: '' }));
+            setInputs(prev => ({
+              ...prev,
+              crop: data.crops.includes(prev.crop) ? prev.crop : '',
+              previousCrop: data.crops.includes(prev.previousCrop) ? prev.previousCrop : '',
+            }));
           } else {
             setAvailableCrops([]);
           }

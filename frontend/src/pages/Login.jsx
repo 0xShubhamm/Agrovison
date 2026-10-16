@@ -14,7 +14,7 @@ const Login = () => {
   const handleGoogleLogin = async () => {
     setLoading(true);
     setError('');
-    const { user, error } = await loginWithGoogle();
+    const { error } = await loginWithGoogle();
     if (error) setError(error);
     else setStep('form');
     setLoading(false);
@@ -89,7 +89,7 @@ const Login = () => {
                 <label className="form-label">📍 Village / City</label>
                 <input type="text" name="region" className="form-control" placeholder="e.g. Anand, Gujarat" value={formData.region} onChange={handleChange} />
               </div>
-              <button type="submit" className="auth-btn">🚀 Let's Get Started</button>
+              <button type="submit" className="auth-btn">🚀 Let&apos;s Get Started</button>
             </form>
           </>
         )}

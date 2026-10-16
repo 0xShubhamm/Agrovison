@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from "prop-types";
 import Modal from 'react-modal';
 import { WiThermometer, WiStrongWind, WiRaindrop, WiDaySunny } from 'react-icons/wi';
 
@@ -75,5 +76,12 @@ function AirConditions({ weather }) {
     </div>
   );
 }
+
+AirConditions.propTypes = {
+  weather: PropTypes.shape({
+    wind: PropTypes.object,
+    main: PropTypes.object,
+  }),
+};
 
 export default AirConditions;

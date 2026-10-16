@@ -46,7 +46,7 @@ const Help = () => {
         <div className="container hero-content">
           <h1 className="hero-title">❓ Help & Support</h1>
           <p className="hero-subtitle">
-            Find answers to common questions – we're here to help every farmer
+            Find answers to common questions – we&apos;re here to help every farmer
           </p>
         </div>
       </section>

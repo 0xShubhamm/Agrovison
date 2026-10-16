@@ -69,7 +69,7 @@ const PricePrediction = () => {
       <header className="price-header">
         <div className="container">
           <h1 className="price-page-title">💰 Crop Price Prediction</h1>
-          <p className="price-page-subtitle">Know your crop's price before you sell</p>
+          <p className="price-page-subtitle">Know your crop&apos;s price before you sell</p>
         </div>
       </header>
 

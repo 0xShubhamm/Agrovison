@@ -17,27 +17,27 @@ const History = () => {
         const w = JSON.parse(localStorage.getItem(`weather_${lastCity.toLowerCase()}`));
         if (w) setWeatherCache({ ...w, city: lastCity });
       }
-    } catch {}
+    } catch { /* ignore invalid cached data */ }
 
     try {
       const d = JSON.parse(localStorage.getItem('dashboard_cache'));
       if (d) setDashboardCache(d);
-    } catch {}
+    } catch { /* ignore invalid cached data */ }
 
     try {
       const c = JSON.parse(localStorage.getItem('crop_analysis_cache'));
       if (c) setCropAnalysisCache(c);
-    } catch {}
+    } catch { /* ignore invalid cached data */ }
 
     try {
       const p = JSON.parse(localStorage.getItem('price_prediction_cache'));
       if (p) setPriceCache(p);
-    } catch {}
+    } catch { /* ignore invalid cached data */ }
 
     try {
       const i = JSON.parse(localStorage.getItem('irrigation_cache'));
       if (i) setIrrigationCache(i);
-    } catch {}
+    } catch { /* ignore invalid cached data */ }
   }, []);
 
   const formatTime = (ts) => {

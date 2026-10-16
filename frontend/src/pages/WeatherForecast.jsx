@@ -21,7 +21,7 @@ function WeatherForecast() {
     try {
       const cached = localStorage.getItem(`weather_${city.toLowerCase()}`);
       if (cached) return JSON.parse(cached);
-    } catch (e) { /* ignore */ }
+    } catch { /* ignore */ }
     return null;
   };
 
@@ -31,7 +31,7 @@ function WeatherForecast() {
         weather, forecast, timestamp: new Date().toISOString()
       }));
       localStorage.setItem('weather_last_city', city);
-    } catch (e) { /* ignore */ }
+    } catch { /* ignore */ }
   };
 
   const fetchWeather = async (city) => {
@@ -49,7 +49,7 @@ function WeatherForecast() {
       setWeatherData(currentRes.data);
       setForecastData(forecastRes.data);
       cacheWeather(city, currentRes.data, forecastRes.data);
-    } catch (err) {
+    } catch {
       // Try cached data
       const cached = getCachedWeather(city);
       if (cached) {
